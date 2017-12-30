@@ -1,0 +1,23 @@
+Create Blog and Admin Panel #1
+------------------------------
+Paste index design to welcome page
+Remove existing CSS and JS to public directory and make 2 dir admin and user.
+Put all front design file to public/user 
+
+Blade Templates and Routes #2
+-----------------------------
+Make home.blade.php and extends to app.blade.php
+Create post.blade.php and extends to app.blade.php
+Make route for post
+
+Table Structure and Migration #4
+--------------------------------
+Make table structure 
+Make migration file with model
+Make directory app/Model
+Inside model make 2 directories Admin and User
+Separate model through there use
+
+Admin Side Templates #5
+-----------------------
+Make admin balde and mastering template
