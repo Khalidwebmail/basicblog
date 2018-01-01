@@ -23,13 +23,13 @@
             </span>
           </a>
 
-            <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Post</a></li>
+            <li class=""><a href="{{ route('post.index') }}"><i class="fa fa-circle-o"></i> Post</a></li>
 
-            <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Category</a></li>
+            <li class=""><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i> Category</a></li>
 
-            <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Tag</a></li>
+            <li class=""><a href="{{ route('tag.index') }}"><i class="fa fa-circle-o"></i> Tag</a></li>
 
-            <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> User</a></li>
+            <li class=""><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i> User</a></li>
 
         </li>
         

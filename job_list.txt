@@ -21,3 +21,19 @@ Separate model through there use
 Admin Side Templates #5
 -----------------------
 Make admin balde and mastering template
+
+Create Post, Tag & Category Forms #6
+------------------------------------
+Create post route
+Create post.blade.php
+Create category.blade.php
+Create tag.blade.php
+
+Why we need controller #7
+-------------------------
+Create PostController.php
+Create TagController.php
+Create CategoryController.php
+Create HomeController.php
+Make group and resource route for both user and admin
+Make post.blade.php resources/views/admin/post
