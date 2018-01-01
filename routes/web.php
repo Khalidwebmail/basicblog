@@ -22,3 +22,11 @@ Route::get('post', function(){
 Route::get('admin/home', function(){
 	return view('admin.home');
 })->name('post');
+
+Route::get('admin/tag', function(){
+	return view('admin.tag.tag');
+});
+
+Route::get('admin/category', function(){
+	return view('admin.category.category');
+});
