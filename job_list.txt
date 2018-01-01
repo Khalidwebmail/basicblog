@@ -37,3 +37,6 @@ Create CategoryController.php
 Create HomeController.php
 Make group and resource route for both user and admin
 Make post.blade.php resources/views/admin/post
+
+Eloquent Query to Save Data #8
+------------------------------

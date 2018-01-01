@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Model\User\Post;
 class PostController extends Controller
 {
     /**
@@ -35,7 +35,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'title' => 'required',
+            'subtitle' => 'required',
+            'slug' => 'required',
+            'body' => 'required',
+        ));
+
+        $post = new Post();
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->slug = $request->slug;
+        $post->body = $request->body;
+        //$post = $request->all($post);
+        $post->save();
+        return redirect(route('post.index'));
     }
 
     /**
