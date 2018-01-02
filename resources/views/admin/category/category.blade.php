@@ -26,8 +26,14 @@
               <h3 class="box-title">Category</h3>
             </div>
             <!-- /.box-header -->
+            @if(count($errors) > 0)
+                @foreach($errors->all() as $error)
+                    <p class="alert alert-danger">{{ $error }}</p>
+                @endforeach
+            @endif
             <!-- form start -->
-            <form role="form">
+            <form role="form" method="post" action="{{ route('category.store') }}">
+              {{ csrf_field() }}
               <div class="box-body">
                 <div class="col-lg-6 col-lg-offset-3 ">
                   <div class="form-group">
@@ -37,10 +43,10 @@
 
                 <div class="form-group">
                   <label for="slug">Category slug</label>
-                  <input type="text" name="subtitle" class="form-control" id="slug" placeholder="Category slug...">
+                  <input type="text" name="slug" class="form-control" id="slug" placeholder="Category slug...">
                 </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="submit" class="btn btn-primary" value="Submit"><!-- Submit</button> -->
             </div>
 
               </div>

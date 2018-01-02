@@ -47,7 +47,6 @@ class PostController extends Controller
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
         $post->body = $request->body;
-        //$post = $request->all($post);
         $post->save();
         return redirect(route('post.index'));
     }

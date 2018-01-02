@@ -40,3 +40,4 @@ Make post.blade.php resources/views/admin/post
 
 Eloquent Query to Save Data #8
 ------------------------------
+Save data using model
