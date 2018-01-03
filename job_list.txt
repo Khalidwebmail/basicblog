@@ -52,3 +52,8 @@ Make data table showing info(Post, tag, category)
 CRUD for Category and Tags #10
 ------------------------------
 Update and delete (Category, Post, Tag)
+
+Many to Many Relationsip #11
+----------------------------
+Make relationship among category, post and tag using
+pivote table
