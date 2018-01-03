@@ -41,3 +41,10 @@ Make post.blade.php resources/views/admin/post
 Eloquent Query to Save Data #8
 ------------------------------
 Save data using model
+
+Save Category and Tags to DB #9
+-------------------------------
+Save tag and category to DB
+Make message blade for showing error message
+Make data table showing info
+to be continue...

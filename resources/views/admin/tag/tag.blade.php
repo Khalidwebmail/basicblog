@@ -26,11 +26,7 @@
               <h3 class="box-title">Title</h3>
             </div>
             <!-- /.box-header -->
-            @if(count($errors) > 0)
-                @foreach($errors->all() as $error)
-                    <p class="alert alert-danger">{{ $error }}</p>
-                @endforeach
-            @endif
+            @include('includes.message')
             <!-- form start -->
             <form role="form" action="{{ route('tag.store') }}" method="post">
               {{ csrf_field() }}
@@ -47,6 +43,7 @@
                 </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit"><!-- </button> -->
+                <a href="{{ route('tag.index') }}" class="btn btn-warning">Back</a><!-- </button> -->
             </div>
 
               </div>
