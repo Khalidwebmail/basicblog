@@ -46,5 +46,9 @@ Save Category and Tags to DB #9
 -------------------------------
 Save tag and category to DB
 Make message blade for showing error message
-Make data table showing info
-to be continue...
+Save and create Tag and category
+Make data table showing info(Post, tag, category)
+
+CRUD for Category and Tags #10
+------------------------------
+Update and delete (Category, Post, Tag)

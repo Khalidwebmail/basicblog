@@ -58,8 +58,8 @@
                     <td>{{ $key+1 }}</td>
                     <td>{{ $tag->name }}</td>
                     <td>{{ $tag->slug }}</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td><a href="{{ route('tag.edit',$tag->id) }}"><i class="fa fa-edit"></i></a></td>
+                    <td><a href="#"><i class="fa fa-trash"></i></a></td>
                   </tr>
                 @endforeach
                 </tbody>

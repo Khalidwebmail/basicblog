@@ -23,23 +23,24 @@
 
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tag</h3>
+              <h3 class="box-title">Edit tag</h3>
             </div>
             <!-- /.box-header -->
             @include('includes.message')
             <!-- form start -->
-            <form role="form" action="{{ route('tag.store') }}" method="post">
+            <form role="form" action="{{ route('tag.update',$tag->id) }}" method="post">
               {{ csrf_field() }}
+              {{ method_field('PUT') }}
               <div class="box-body">
                 <div class="col-lg-6 col-lg-offset-3 ">
                   <div class="form-group">
                   <label for="name">Tag tile</label>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Tag...">
+                  <input type="text" name="name" class="form-control" id="name" value="{{ $tag->name }}">
                 </div>
 
                 <div class="form-group">
                   <label for="slug">Tag slug</label>
-                  <input type="text" name="slug" class="form-control" id="slug" placeholder="Slug...">
+                  <input type="text" name="slug" class="form-control" id="slug" value="{{ $tag->slug }}">
                 </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit"><!-- </button> -->
