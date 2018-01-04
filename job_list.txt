@@ -57,3 +57,8 @@ Many to Many Relationsip #11
 ----------------------------
 Make relationship among category, post and tag using
 pivote table
+
+Save data with eloquent relationship #12
+----------------------------------------
+Change post edit and add new blade (add tag and category option)
+Publish and unpublish post

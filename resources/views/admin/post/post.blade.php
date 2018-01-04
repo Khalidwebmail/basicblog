@@ -1,5 +1,9 @@
 @extends('admin.layout.app')
 
+@section('headSection')
+<link rel="stylesheet" type="text/css" href="{{ asset('admin//plugins/select2/select2.min.css') }}">
+@endsection
+
 @section('main-content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -53,9 +57,27 @@
                   <input type="file" name="image" class="form-control" id="uploadimage">
                 </div>
 
+                <div class="form-group">
+                <label>Select categories</label>
+                <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="categories[]">
+                  @foreach($categories as $category)
+                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Select tags</label>
+                <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="tags[]">
+                  @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="status"> Publish
+                    <input type="checkbox" name="status" value="1"> Publish
                   </label>
                 </div>
               </div>
@@ -92,4 +114,17 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+@endsection
+
+@section('footerSection')
+<script type="text/javascript" src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
+
+
+  <script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+  });
+</script>
+
 @endsection

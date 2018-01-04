@@ -11,7 +11,7 @@ class Post extends Model
     	return $this->belongsToMany('App\Model\User\Tag','post_tags');
     }
 
-    public function category()
+    public function categories()
     {
     	return $this->belongsToMany('App\Model\User\Category','category_posts');
     }

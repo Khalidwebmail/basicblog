@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\User\Post;
+use App\Model\User\Tag;
+use App\Model\User\Category;
 class PostController extends Controller
 {
     /**
@@ -25,7 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.post');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.post.post',compact('categories','tags'));
     }
 
     /**
@@ -36,6 +40,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request->all();
         $this->validate($request, array(
             'title' => 'required',
             'subtitle' => 'required',
@@ -48,7 +53,10 @@ class PostController extends Controller
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->status = $request->status;
         $post->save();
+        $post->tags()->sync($request->tags);
+        $post->categories()->sync($request->categories);
         return redirect(route('post.index'));
     }
 
@@ -71,8 +79,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
+        $tags = Tag::all();
+
         $post = Post::where('id',$id)->first();
-        return view('admin.post.edit',compact('post'));
+        return view('admin.post.edit',compact('post','categories','tags'));
     }
 
     /**
@@ -96,7 +107,10 @@ class PostController extends Controller
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->status = $request->status;
         $post->save();
+        $post->tags()->sync($request->tags);
+        $post->categories()->sync($request->categories);
         return redirect(route('post.index'));
     }
 
