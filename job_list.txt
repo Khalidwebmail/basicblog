@@ -83,3 +83,13 @@ Goto Comments Plugin Code Generator section
 Set number of posts whcih we want to show
 Above settings click on Get code button
 Before that we've create a facebook app
+
+Add syntax highliter #17
+------------------------
+Goto http://prismjs.com/
+Select OKAIDIA
+Select all language and plugins
+Download both CSS and JS file
+To add prism with ckeditor goto ckeditor builder
+Download ckeditor plugins
+
