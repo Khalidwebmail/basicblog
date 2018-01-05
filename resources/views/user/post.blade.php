@@ -6,6 +6,16 @@
 @section('sub-heading',$post->subtitle)
 
 @section('main_content')
+<!--Facebook comment API-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=162027954570084';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!---->
 	<article>
         <div class="container">
             <div class="row">
@@ -31,6 +41,7 @@
                     </small>
                 @endforeach
                 </div>
+                <div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="5"></div><!--fb comment api-->
             </div>
         </div>
     </article>

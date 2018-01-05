@@ -70,6 +70,16 @@ Show Posts on FrontEnd #14
 --------------------------
 Show all post from client page
 Display separate post.
-.
+
 Pagination #15
 --------------
+
+Add Facebook comments system #16
+--------------------------------
+Search google (facebook comment plugins)
+Goto Comments Plugin Code Generator section
+	* in url give (https://localhost:8000)
+
+Set number of posts whcih we want to show
+Above settings click on Get code button
+Before that we've create a facebook app
