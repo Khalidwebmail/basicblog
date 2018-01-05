@@ -70,3 +70,6 @@ Show Posts on FrontEnd #14
 --------------------------
 Show all post from client page
 Display separate post.
+.
+Pagination #15
+--------------
