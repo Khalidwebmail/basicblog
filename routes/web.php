@@ -8,8 +8,8 @@ Route::group(['namespace' => 'User'], function(){
 Route::get('/','HomeController@index'); 
 
 /*This route will use for showing specific post*/
-Route::get('post', 'PostController@index')->name('post');
-});
+Route::get('post/{post}', 'PostController@post')->name('post');
+}); 
 
 
 /*Thaough our all controllers are in Admin dir, so we made group
