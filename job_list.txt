@@ -61,4 +61,7 @@ pivote table
 Save data with eloquent relationship #12
 ----------------------------------------
 Change post edit and add new blade (add tag and category option)
-Publish and unpublish post
+Publish and unpublish post.
+
+Add CKeditor #13
+-----------------

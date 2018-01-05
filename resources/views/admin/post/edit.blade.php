@@ -61,7 +61,13 @@
                 <label>Select categories</label>
                 <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="categories[]">
                   @foreach($categories as $category)
-                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  <option value="{{ $category->id }}"
+                      @foreach($post->categories as $postCategory)
+                        @if($postCategory->id == $category->id)
+                          selected
+                        @endif
+                  @endforeach
+                    >{{ $category->name }}</option>
                   @endforeach
                 </select>
               </div>
@@ -70,14 +76,20 @@
                 <label>Select tags</label>
                 <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="tags[]">
                   @foreach($tags as $tag)
-                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    <option value="{{ $tag->id }}"
+                      @foreach($post->tags as $postTag)
+                        @if($postTag->id == $tag->id)
+                          selected
+                        @endif
+                      @endforeach
+                      >{{ $tag->name }}</option>
                   @endforeach
                 </select>
               </div>
 
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="status" value="1" @if($post->status ==0) unchecked @endif> Publish
+                    <input type="checkbox" name="status" value="1" @if($post->status == 1) {{ 'checked' }} @endif> Publish
                   </label>
                 </div>
               </div>
@@ -95,7 +107,7 @@
             <!-- /.box-header -->
             <div class="box-body pad">
 
-                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 600px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body">{{ $post->body }}</textarea>
+                <textarea placeholder="Place some text here" style="width: 100%; height: 600px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body" id="editor1">{{ $post->body }}</textarea>
               
             </div>
           </div>
@@ -119,6 +131,16 @@
 @section('footerSection')
 <script type="text/javascript" src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
 
+<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+<script type="text/javascript">
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1');
+    //bootstrap WYSIHTML5 - text editor
+    //$(".textarea").wysihtml5();
+  });
+</script>
 
   <script>
   $(function () {

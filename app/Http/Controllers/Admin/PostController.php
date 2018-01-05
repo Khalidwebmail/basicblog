@@ -82,7 +82,8 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        $post = Post::where('id',$id)->first();
+        $post = Post::with('tags','categories')->where('id',$id)->first();
+
         return view('admin.post.edit',compact('post','categories','tags'));
     }
 
