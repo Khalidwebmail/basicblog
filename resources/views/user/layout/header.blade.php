@@ -24,6 +24,27 @@
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
+
+                    <li>
+                        <a class="btn btn-link" href="{{ route('register') }}">Registration</a>
+                    </li>
+
+                    
+                    <li>
+                        @if(Auth::guest())
+                            <a href="{{ route('login') }}">Login</a>
+                        @else
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        @endif
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

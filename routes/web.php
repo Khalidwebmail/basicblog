@@ -33,3 +33,6 @@ Route::group(['namespace' => 'Admin'], function(){
 	//User route
 	Route::resource('admin/user','UserController');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

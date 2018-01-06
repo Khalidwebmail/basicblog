@@ -93,3 +93,16 @@ Download both CSS and JS file
 To add prism with ckeditor goto ckeditor builder
 Download ckeditor plugins
 
+ Create User Login(Auth) system #20
+ ----------------------------------
+ php artisan make:auth
+ To give login route in our index page
+ 	goto web.php
+ 	Goto to Auth.php
+ 	Goto Router.php(laravel/framework/src/Illuminate/Routing/Router.php)
+ 	In this file search(auth())
+ 	Put that login route in our page
+ 	Change login.blade.php view
+
+ 	Add registration page view route to our page
+ 	Open registration.blade.php from auth
