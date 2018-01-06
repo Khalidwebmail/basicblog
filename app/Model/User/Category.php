@@ -8,6 +8,11 @@ class Category extends Model
 {
     public function posts()
     {
-    	return $this->belongsToMany('App\Model\User\Post','category_posts');
+    	return $this->belongsToMany('App\Model\User\Post','category_posts')->orderBy('created_at','desc')->paginate(2);
+    }
+
+    public function getRouteKeyName()
+    {
+    	return 'slug';
     }
 }

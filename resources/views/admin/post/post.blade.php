@@ -31,7 +31,7 @@
             </div>
             @include('includes.message')
             <!-- form start -->
-            <form role="form" action="{{ route('post.store') }}" method="post">
+            <form role="form" action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
                 <div class="col-lg-6">
@@ -120,7 +120,7 @@
 <script type="text/javascript" src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
 
 <script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
-<!-- <script src="{{ asset('admin/dist/js/demo.js') }}"></script> -->
+
 <script type="text/javascript">
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor

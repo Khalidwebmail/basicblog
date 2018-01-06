@@ -30,7 +30,7 @@
             </div>
             @include('includes.message')
             <!-- form start -->
-            <form role="form" action="{{ route('post.update',$post->id) }}" method="post">
+            <form role="form" action="{{ route('post.update',$post->id) }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
               {{ method_field('PUT') }}
               <div class="box-body">
