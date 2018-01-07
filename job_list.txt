@@ -161,3 +161,54 @@ protected function guard()
         return Auth::guard();
     }
 protected $redirectTo = 'admin/home';
+
+Middleware and Redirect for Admin Side #23
+------------------------------------------
+Open app/Http/Controllers/Admin/Auth/LoginController.
+Change __construct() like below
+
+public function __construct()
+    {
+        $this->middleware('guest:admin')->except('logout');
+    }
+Open middleware RedirectIfAuthenticated.php. Make new condition in handle 
+method.
+***********************************************************
+public function handle($request, Closure $next, $guard = null)
+    {
+        switch ($guard) {
+            case 'admin':
+                if (Auth::guard($guard)->check()) {
+                    return redirect('admin/home');
+                }
+            break;
+            
+            default:
+                if (Auth::guard($guard)->check()) {
+                    return redirect('/home');
+                }
+                break;
+        }
+        return $next($request);
+    }
+*************************************************************
+
+Use logout route directly because we've no need to overwrite here.
+
+To prohabit direct access admin's home put  
+$this->middleware('auth:admin'); in every admin's controller except auth
+
+Open app/Exceptions/Handler.php. In unauthenticated function give condition below if statement
+***************************************
+$guard = array_get($exception->guards(),0);
+
+        switch ($guard) {
+            case 'admin':
+                return redirect()->guest(route('admin.login'));
+                break;
+            
+            default:
+                return redirect()->guest(route('login'));
+                break;
+        }
+****************************************
