@@ -130,3 +130,34 @@ public function login(Request $request)
         return $this->sendFailedLoginResponse($request);
     }
     ***********************************************
+
+ Admin Login(Auth) Create Guard #22
+ ----------------------------------
+ Open LoginController.php from Admin
+ Open config/auth.php
+
+ 	Make authentication guard
+ 		'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+    Make provider
+    	'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Admin\Admin::class, //Model path
+        ],
+    Make password reset table
+    	'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+Open AuthenticatesUsers.php and copy guard function and paste
+app/Http/Controllers/Admin/Auth/LoginController. In guard use 
+parameter guard('admin'). And change $redirect variable
+
+protected function guard()
+    {
+        return Auth::guard();
+    }
+protected $redirectTo = 'admin/home';
