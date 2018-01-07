@@ -8,12 +8,11 @@
 <body>
 
     <!-- Navigation -->
-        @include('user.layout/header')
+        @include('user.layout.header')
     <!-- Main Content -->
         @section('main_content')
             @show
     <!-- Footer -->
-    
         @include('user.layout.footer')
     </body>
 

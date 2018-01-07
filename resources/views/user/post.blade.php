@@ -1,4 +1,5 @@
 @extends('user.app')
+@section('main_content')
 
 @section('bg-img',Storage::disk('local')->url($post->image))
 
@@ -10,7 +11,7 @@
 
 @section('sub-heading',$post->subtitle)
 
-@section('main_content')
+
 <!--Facebook comment API-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

@@ -106,3 +106,27 @@ Download ckeditor plugins
 
  	Add registration page view route to our page
  	Open registration.blade.php from auth
+
+ Create Admin Login(Auth) system #21
+ -----------------------------------
+Make file in admin directory (login.blade.php)
+Goto laravel/framework/src/Illuminate/Routing/Router.php
+Copy showLoginFrom route and paste it into admin route group
+Copy Auth folder from Http/app Auth  and paste to Admin controller directory
+Open AuthenticatesUsers.php
+Copy function showLoginForm and paste AdminLoginController
+Change view path
+Again goto laravel/framework/src/Illuminate/Routing/Router.php
+Copy login controller for post
+Copy login from AuthenticatesUsers.php and customize that and make like
+**********************************
+public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
+        }
+        return $this->sendFailedLoginResponse($request);
+    }
+    ***********************************************
