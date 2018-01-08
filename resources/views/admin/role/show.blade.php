@@ -25,8 +25,8 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Tags</h3>
-            <a href="{{ route('tag.create') }}" class="col-lg-offset-5 btn btn-success">Add New</a>
+          <h3 class="box-title">Roles</h3>
+            <a href="{{ route('role.create') }}" class="col-lg-offset-5 btn btn-success">Add New</a>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -46,21 +46,19 @@
                 <thead>
                 <tr>
                   <th>Serial</th>
-                  <th>Tag name</th>
-                  <th>Slug</th>
+                  <th>Role name</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($tags as $key=>$tag)
+                @foreach($roles as $key=>$role)
                   <tr>
                     <td>{{ $key+1 }}</td>
-                    <td>{{ $tag->name }}</td>
-                    <td>{{ $tag->slug }}</td>
-                    <td><a href="{{ route('tag.edit',$tag->id) }}"><i class="fa fa-edit"></i></a></td>
+                    <td>{{ $role->name }}</td>
+                    <td><a href="{{ route('role.edit',$role->id) }}"><i class="fa fa-edit"></i></a></td>
                     <td>
-                      <form id="delete-form-{{ $tag->id }}" action="{{ route('tag.destroy',$tag->id) }}" style="display: none;" method="post">
+                      <form id="delete-form-{{ $role->id }}" action="{{ route('role.destroy',$role->id) }}" style="display: none;" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                       </form>
@@ -68,7 +66,7 @@
                         if(confirm('Are you sure to delete ?'))
                           {
                             event.preventDefault();
-                            document.getElementById('delete-form-{{ $tag->id }}').submit();
+                            document.getElementById('delete-form-{{ $role->id }}').submit();
                           }
                           else{
                             event.preventDefault();
@@ -80,8 +78,7 @@
                 <tfoot>
                 <tr>
                   <th>Serial</th>
-                  <th>Tag name</th>
-                  <th>Slug</th>
+                  <th>Role name</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>

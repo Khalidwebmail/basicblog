@@ -4,14 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Admin\Admin;
-class UserController extends Controller
+use App\Model\Admin\Role;
+class RoleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = Admin::all();
-        return view('admin.user.show',compact('users'));
+        $roles = Role::all();
+        return view('admin.role.show',compact('roles'));
     }
 
     /**
@@ -30,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.role.create');
     }
 
     /**
@@ -41,7 +36,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'name'=>'required|unique:roles',
+        ));
+
+        $role = new Role();
+        $role->name = $request->name;
+        $role->save();
+        return redirect(route('role.index'));
     }
 
     /**
@@ -63,7 +65,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::where('id',$id)->first();
+        return view('admin.role.edit',compact('role'));
     }
 
     /**
@@ -75,7 +78,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, array(
+            'name'=>'required',
+        ));
+
+        $role = Role::find($id);
+        $role->name = $request->name;
+        $role->save();
+        return redirect(route('role.index'));
     }
 
     /**
@@ -86,6 +96,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Role::where('id',$id)->delete();
+        return redirect(route('role.index'));
     }
 }
