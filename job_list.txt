@@ -214,3 +214,8 @@ $guard = array_get($exception->guards(),0);
 ****************************************
 Create Admin User Roles - CRUD #24
 ----------------------------------
+Complete CRUD roles name
+
+Edit Admin User Roles #25
+-------------------------
+Add role in user create view
