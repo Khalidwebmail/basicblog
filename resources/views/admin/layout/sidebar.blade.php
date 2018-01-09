@@ -33,6 +33,8 @@
 
             <li class=""><a href="{{ route('role.index') }}"><i class="fa fa-circle-o"></i> Roles</a></li>
 
+            <li class=""><a href="{{ route('permission.index') }}"><i class="fa fa-circle-o"></i> Permission</a></li>
+
         </li>
         
       </ul>

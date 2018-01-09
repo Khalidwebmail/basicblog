@@ -36,6 +36,9 @@ Route::group(['namespace' => 'Admin'], function(){
 	//Role  route
 	Route::resource('admin/role','RoleController');
 
+	//Permission  route
+	Route::resource('admin/permission','PermissionController');
+
 	//Admin auth route
 	Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
 
