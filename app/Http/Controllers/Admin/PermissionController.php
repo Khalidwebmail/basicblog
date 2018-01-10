@@ -15,17 +15,20 @@ class PermissionController extends Controller
 
     public function create()
     {
-    	return view('admin.permission.create');
+        $permissions = Permission::all();
+    	return view('admin.permission.create',compact('permissions'));
     }
 
     public function store(Request $request)
     {
     	$this->validate($request, array(
             'name'=>'required|unique:permissions',
+            'for'=>'required',
         ));
 
         $permission = new Permission();
         $permission->name = $request->name;
+        $permission->for = $request->for;
         $permission->save();
         return redirect(route('permission.index'));
     }
@@ -40,13 +43,12 @@ class PermissionController extends Controller
     {
         $this->validate($request, array(
             'name'=>'required',
+            'for'=>'required',
         ));
 
         $permission = Permission::find($id);
         $permission->name = $request->name;
-        // echo '<pre>';
-        // print_r($permission);
-        // exit;
+        $permission->for = $request->for;
         $permission->save();
         return redirect(route('permission.index'))->with('message','Permission updated');
     }

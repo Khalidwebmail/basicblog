@@ -16,9 +16,16 @@ class CreatePermissionTable extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
+            $table->string('for');
             $table->timestamps();
         });
+
+        Schema::create('permission_roles', function (Blueprint $table) {
+            $table->integer('permission_id');
+            $table->integer('role_id');
+        });
     }
+
 
     /**
      * Reverse the migrations.
