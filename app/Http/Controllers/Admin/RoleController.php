@@ -46,6 +46,7 @@ class RoleController extends Controller
         $role = new Role();
         $role->name = $request->name;
         $role->save();
+        $role->permissions()->sync($request->permission);
         return redirect(route('role.index'));
     }
 
@@ -69,7 +70,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::where('id',$id)->first();
-        return view('admin.role.edit',compact('role'));
+        $permissions = Permission::all();
+        return view('admin.role.edit',compact('role','permissions'));
     }
 
     /**
@@ -81,13 +83,16 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //return $request->all();
         $this->validate($request, array(
+            'name'=>'required',
             'name'=>'required',
         ));
 
         $role = Role::find($id);
         $role->name = $request->name;
         $role->save();
+        $role->permissions()->sync($request->permission);
         return redirect(route('role.index'));
     }
 

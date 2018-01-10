@@ -231,3 +231,5 @@ Make permission
 Permissions for Admin User CRUD #27
 ----------------------------------
 Complete CRUD permission and role
+
+Save Role with Permissions| #28
