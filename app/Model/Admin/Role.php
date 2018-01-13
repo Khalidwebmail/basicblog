@@ -10,4 +10,9 @@ class Role extends Model
     {
     	return $this->belongsToMany('App\Model\Admin\Permission','permission_roles');
     }
+
+    public function admins()
+    {
+    	return $this->belongsToMany('App\Model\Admin\Role','admin_roles');
+    }
 }

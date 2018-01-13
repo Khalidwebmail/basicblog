@@ -34,22 +34,37 @@
                 <div class="col-lg-6 col-lg-offset-3 ">
                   <div class="form-group">
                   <label for="username">Username</label>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Username...">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Username..." value="{{old('name')}}">
                 </div>
 
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" name="email" class="form-control" id="email" placeholder="Email...">
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Email..." value="{{old('email')}}">
+                </div>
+  
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone..." value="{{old('phone')}}">
                 </div>
 
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" name="password" class="form-control" id="password" placeholder="Password...">
+                  <input type="password" name="password" class="form-control" id="password" placeholder="Password..." value="{{old('password')}}">
                 </div>
 
                 <div class="form-group">
                   <label for="confirm_password">Confirm Password</label>
-                  <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password...">
+                  <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirm Password...">
+                </div>
+                
+                <div class="form-group">
+                  <label for="user_status">User status</label>
+                  <div class="checkbox">
+                    <label><input type="checkbox" name="status" 
+                    @if(old('status') == 1) 
+                      checked
+                    @endif value="1">Status</label>
+                  </div>
                 </div>
 
                 <div class="form-group col-lg-12">

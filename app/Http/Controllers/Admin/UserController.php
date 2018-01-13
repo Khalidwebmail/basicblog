@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Admin;
 use App\Model\Admin\Role;
+use Carbon\Carbon;
 class UserController extends Controller
 {
     public function __construct()
@@ -43,7 +44,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request->all();
+        $this->validate($request,array(
+            'name' => 'required',
+            'email' => 'required|string|email|unique:admins',
+            'password' => 'required|string|confirmed',
+            'phone' => 'required|numeric|unique:admins',
+            'status'=>'required',
+        ));
+        $request['password'] = bcrypt($request->password);
+        $user = Admin::create($request->all());
+        $user->roles()->sync($request->role);
+        return redirect(route('user.index'));
     }
 
     /**
@@ -65,7 +77,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.user.edit');
+        $user = Admin::where('id',$id)->first();
+        $roles = Role::all();
+        return view('admin.user.edit',compact('user','roles'));
     }
 
     /**
@@ -77,7 +91,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,array(
+            'name' => '',
+            'email' => 'string|email',
+            'phone' => 'numeric',
+        ));
+        $user = Admin::where('id',$id)->update($request->except('_token'));
+        $user['updated_at'] = Carbon::now();
+        $user->status = $request->status? $request['status']=1 : $request['status']=0;
+        $request['password'] = bcrypt($request->password);
+
+        $user->save($request->all());
+        $user->roles()->sync($request->role);
+        return redirect(route('user.index'))->with('message','User settings changed');
     }
 
     /**
@@ -88,6 +114,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Admin::where('id',$id)->delete();
+        return redirect(route('user.index'))->with('message',"User deleted successfully");
     }
 }
