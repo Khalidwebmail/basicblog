@@ -233,3 +233,56 @@ Permissions for Admin User CRUD #27
 Complete CRUD permission and role
 
 Save Role with Permissions| #28
+
+
+
+Login with status and error message #31
+---------------------------------------
+    This 
+Open AuthenticateUsers.php
+Copy credentials function
+And paste app/Http/Controllers/Admin/Auth/LoginController.php
+
+protected function credentials(Request $request)
+    {
+        return ['email'=>$request->email, 'password'=>$request->password, 'status'=>1];
+    }
+
+Which user's status is 1 only those users allow to login system
+
+Open AuthenticateUsers.php and comment sendFailedLoginResponse() internal statement 
+
+protected function sendFailedLoginResponse(Request $request)
+    {
+        $fields = $this->credentials($request);
+
+        if($fields['email'] == 'inactive'){
+            $errors = $fields['password'];
+        }
+        else{
+            throw ValidationException::withMessages([
+                $this->username() => [trans('auth.failed')],
+            ]);
+        }
+    }
+
+Go to app/Http/Controllers/Admin/Auth/LoginController.php and change credential function like this 
+
+protected function credentials(Request $request)
+    {
+        $admin = Admin::where('email',$request->email and 'password', $request->password)->first();
+
+        if(count($admin))
+        {
+            if($admin->status == 0):
+                return ['email'=>'inactive', 'password'=>'You are not active user'];
+            endif;
+
+            if($admin->status == 1):
+                return ['email'=>$request->email, 'password'=>$request->password, 'status'=>1];
+            endif;
+        }
+        else{
+            return $request->only($this->username(), 'password');
+        }
+    }

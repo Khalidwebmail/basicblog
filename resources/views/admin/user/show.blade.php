@@ -48,8 +48,9 @@
                 <tr>
                   <th>Serial</th>
                   <th>Username</th>
-                  <th>Assigner roles</th>
                   <th>Email</th>
+                  <th>Assigned roles</th>
+                  <th>Status</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -62,9 +63,15 @@
                     <td>{{ $user->email }}</td>
                     <td>
                       @foreach($user->roles as $role)
-                        {{$role->name}}, 
+                        {{$role->name}} 
                       @endforeach
                     </td>
+                    
+                    @if($user->status == 1)
+                      <td>Active</td>
+                    @else
+                      <td>Inactive</td>
+                    @endif
                     <td><a href="{{ route('user.edit',$user->id) }}"><i class="fa fa-edit"></i></a></td>
                     <td>
                       <form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy',$user->id) }}" style="display: none;" method="post">
@@ -88,8 +95,9 @@
                 <tr>
                   <th>Serial</th>
                   <th>Username</th>
-                  <th>Assigner roles</th>
                   <th>Email</th>
+                  <th>Assigned roles</th>
+                  <th>Status</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
