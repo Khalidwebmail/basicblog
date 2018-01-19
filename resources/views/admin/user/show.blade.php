@@ -48,6 +48,7 @@
                 <tr>
                   <th>Serial</th>
                   <th>Username</th>
+                  <th>Assigner roles</th>
                   <th>Email</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -59,6 +60,11 @@
                     <td>{{ $key+1 }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>
+                      @foreach($user->roles as $role)
+                        {{$role->name}}, 
+                      @endforeach
+                    </td>
                     <td><a href="{{ route('user.edit',$user->id) }}"><i class="fa fa-edit"></i></a></td>
                     <td>
                       <form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy',$user->id) }}" style="display: none;" method="post">
@@ -82,6 +88,7 @@
                 <tr>
                   <th>Serial</th>
                   <th>Username</th>
+                  <th>Assigner roles</th>
                   <th>Email</th>
                   <th>Edit</th>
                   <th>Delete</th>

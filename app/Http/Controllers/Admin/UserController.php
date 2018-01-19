@@ -91,19 +91,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,array(
+        $this->validate($request, array(
             'name' => '',
             'email' => 'string|email',
+            'password' => 'string|confirmed',
             'phone' => 'numeric',
         ));
-        $user = Admin::where('id',$id)->update($request->except('_token'));
-        $user['updated_at'] = Carbon::now();
-        $user->status = $request->status? $request['status']=1 : $request['status']=0;
-        $request['password'] = bcrypt($request->password);
 
-        $user->save($request->all());
+        $user = Admin::find($id);
+        $user['updated_at'] = Carbon::now();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+
+        $user->status = $request->status? $request['status']=1 : $request['status']=0;
+        $user->save();
         $user->roles()->sync($request->role);
-        return redirect(route('user.index'))->with('message','User settings changed');
+        return redirect(route('user.index'))->with('User updated');
     }
 
     /**

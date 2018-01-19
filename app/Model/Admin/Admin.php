@@ -26,4 +26,9 @@ class Admin extends Authenticatable
     {
     	return $this->belongsToMany('App\Model\Admin\Role','admin_roles');
     }
+
+    // public function getNameAttribure($value)
+    // {
+    //     return ucfirst($value);
+    // }
 }
